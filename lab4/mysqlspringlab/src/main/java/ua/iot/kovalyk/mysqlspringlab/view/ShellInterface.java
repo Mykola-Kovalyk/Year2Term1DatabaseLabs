@@ -65,7 +65,7 @@ public class ShellInterface {
             try {
                 System.out.print(" > ");
                 command = reader.readLine();
-                if(command == "exit") continue;
+                if(command.equals("exit")) break;
 
                 if(command != null && command.length() > 0) {
                     interpreter.eval("output = " + command + ";");
@@ -76,7 +76,7 @@ public class ShellInterface {
             } catch (EvalError e) {
                 System.out.println("Exception while executing command:\n" + e);
             }
-        } while (command != "exit");
+        } while (true);
 
     }
 }
