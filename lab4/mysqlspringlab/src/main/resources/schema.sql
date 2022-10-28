@@ -1,6 +1,4 @@
-
-CREATE SCHEMA IF NOT EXISTS kovalyk;
-USE kovalyk ;
+USE kovalyk;
 
 -- manufacturers
 -- devices
