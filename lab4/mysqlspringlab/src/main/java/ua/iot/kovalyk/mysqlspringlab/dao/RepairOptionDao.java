@@ -16,8 +16,8 @@ import java.util.Optional;
 public class RepairOptionDao implements GeneralDao<RepairOption, Integer> {
     private static final String FIND_ALL = "SELECT * FROM kovalyk.repair_options";
     private static final String FIND_BY_ID = "SELECT * FROM kovalyk.repair_options WHERE id=?";
-    private static final String CREATE = "INSERT kovalyk.repair_options(name) VALUES (?)";
-    private static final String UPDATE = "UPDATE kovalyk.repair_options SET name=? WHERE id=?";
+    private static final String CREATE = "INSERT kovalyk.repair_options(device, option_name, details, price) VALUES (?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE kovalyk.repair_options SET device=?, option_name=?, details=?, price=? WHERE id=?";
     private static final String DELETE = "DELETE FROM kovalyk.repair_options WHERE id=?";
     private static final String GET_AVAILABLE_OPTIONS = "CALL select_device_repair_options(?, ?)";
     @Autowired

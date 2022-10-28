@@ -23,8 +23,8 @@ import java.util.Optional;
 public class ReplacedPartDao implements GeneralDao<ReplacedPart, Integer> {
     private static final String FIND_ALL = "SELECT * FROM kovalyk.replaced_parts";
     private static final String FIND_BY_ID = "SELECT * FROM kovalyk.replaced_parts WHERE id=?";
-    private static final String CREATE = "INSERT kovalyk.replaced_parts(name) VALUES (?)";
-    private static final String UPDATE = "UPDATE kovalyk.replaced_parts SET name=? WHERE id=?";
+    private static final String CREATE = "INSERT kovalyk.replaced_parts(repair_case, replaced) VALUES (?, ?)";
+    private static final String UPDATE = "UPDATE kovalyk.replaced_parts SET repair_case=?, replaced=? WHERE id=?";
     private static final String DELETE = "DELETE FROM kovalyk.replaced_parts WHERE id=?";
     private static final String GET_REPLACED_PARTS = "CALL total_replaced_parts_throughout_period(?, ?)";
 

@@ -17,8 +17,8 @@ import java.util.Optional;
 public class WorkingHourDao implements GeneralDao<WorkingHours, Integer> {
     private static final String FIND_ALL = "SELECT * FROM kovalyk.working_hours";
     private static final String FIND_BY_ID = "SELECT * FROM kovalyk.working_hours WHERE id=?";
-    private static final String CREATE = "INSERT kovalyk.working_hours(name) VALUES (?)";
-    private static final String UPDATE = "UPDATE kovalyk.working_hours SET name=? WHERE id=?";
+    private static final String CREATE = "INSERT kovalyk.working_hours(repairman, day, start, end) VALUES (?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE kovalyk.working_hours SET repairman=?, day=?, start=?, end=?  WHERE id=?";
     private static final String DELETE = "DELETE FROM kovalyk.working_hours WHERE id=?";
     private static final String GET_SCHEDULE = "SELECT * FROM kovalyk.working_hours WHERE repairman=?";
 

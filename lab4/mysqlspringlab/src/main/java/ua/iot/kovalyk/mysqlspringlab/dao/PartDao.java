@@ -16,8 +16,8 @@ import java.util.Optional;
 public class PartDao implements GeneralDao<Part, Integer> {
     private static final String FIND_ALL = "SELECT * FROM kovalyk.parts";
     private static final String FIND_BY_ID = "SELECT * FROM kovalyk.parts WHERE id=?";
-    private static final String CREATE = "INSERT kovalyk.parts(name) VALUES (?)";
-    private static final String UPDATE = "UPDATE kovalyk.parts SET name=? WHERE id=?";
+    private static final String CREATE = "INSERT kovalyk.parts(part_number, device, manufacturer, amount) VALUES (?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE kovalyk.parts SET part_number=?, device=?, manufacturer=?, amount=? WHERE id=?";
     private static final String DELETE = "DELETE FROM kovalyk.parts WHERE id=?";
     private static final String GET_PARTS_BY_DEVICE = "DELETE FROM kovalyk.parts WHERE device=?";
     private static final String GET_PARTS_FOR_REPLENISHMENT = "SELECT * FROM kovalyk.parts WHERE amount = 0;";
@@ -27,7 +27,7 @@ public class PartDao implements GeneralDao<Part, Integer> {
     private JdbcTemplate jdbcTemplate;
 
     public List<Part> getAllPartsOfDevice(Integer deviceId) {
-        return jdbcTemplate.query(GET_PARTS_BY_DEVICE, BeanPropertyRowMapper.newInstance(Part.class));
+        return jdbcTemplate.query(GET_PARTS_BY_DEVICE, BeanPropertyRowMapper.newInstance(Part.class), deviceId);
     }
 
     public List<Part> getPartsThatNeedReplenishment() {

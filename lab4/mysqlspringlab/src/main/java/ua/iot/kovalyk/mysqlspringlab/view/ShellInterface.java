@@ -3,12 +3,14 @@ package ua.iot.kovalyk.mysqlspringlab.view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Time;
 
 import bsh.EvalError;
 import bsh.Interpreter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.iot.kovalyk.mysqlspringlab.service.*;
+import ua.iot.kovalyk.mysqlspringlab.domain.WorkingHours;
 
 @Component
 public class ShellInterface {
@@ -40,11 +42,12 @@ public class ShellInterface {
     public void mainLoop() {
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in));
-
         String command = null;
         Interpreter interpreter =  new Interpreter();
 
         try {
+            interpreter.eval("import java.sql.*;");
+            interpreter.eval("import ua.iot.kovalyk.mysqlspringlab.domain.*;");
             interpreter.set("devices", deviceService);
             interpreter.set("manufacturers", manufacturerService);
             interpreter.set("parts", partService);

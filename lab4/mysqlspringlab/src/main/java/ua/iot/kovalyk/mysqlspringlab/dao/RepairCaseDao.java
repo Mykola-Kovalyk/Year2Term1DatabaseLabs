@@ -16,8 +16,8 @@ import java.util.Optional;
 public class RepairCaseDao implements GeneralDao<RepairCase, Integer> {
     private static final String FIND_ALL = "SELECT * FROM kovalyk.repair_cases";
     private static final String FIND_BY_ID = "SELECT * FROM kovalyk.repair_cases WHERE id=?";
-    private static final String CREATE = "INSERT kovalyk.repair_cases(name) VALUES (?)";
-    private static final String UPDATE = "UPDATE kovalyk.repair_cases SET name=? WHERE id=?";
+    private static final String CREATE = "INSERT kovalyk.repair_cases(repair_option, repairman, opened, closed, failed) VALUES (?, ?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE kovalyk.repair_cases SET repair_option=?, repairman=?, opened=?, closed=?, failed=? WHERE id=?";
     private static final String DELETE = "DELETE FROM kovalyk.repair_cases WHERE id=?";
     private static final String GET_CASES_OF_REPAIRMAN = "SELECT * FROM kovalyk.repair_cases WHERE repairman=?";
 
@@ -26,7 +26,7 @@ public class RepairCaseDao implements GeneralDao<RepairCase, Integer> {
     private JdbcTemplate jdbcTemplate;
 
     public List<RepairCase> getAllCasesForRepairman(Integer repairmanId) {
-        return jdbcTemplate.query(GET_CASES_OF_REPAIRMAN, BeanPropertyRowMapper.newInstance(RepairCase.class));
+        return jdbcTemplate.query(GET_CASES_OF_REPAIRMAN, BeanPropertyRowMapper.newInstance(RepairCase.class), repairmanId);
     }
 
     @Override
