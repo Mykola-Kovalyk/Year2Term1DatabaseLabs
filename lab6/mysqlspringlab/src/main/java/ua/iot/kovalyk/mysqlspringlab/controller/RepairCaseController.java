@@ -12,6 +12,7 @@ import ua.iot.kovalyk.mysqlspringlab.dto.mappers.PartDTOAssembler;
 import ua.iot.kovalyk.mysqlspringlab.dto.mappers.RepairCaseDTOAssembler;
 import ua.iot.kovalyk.mysqlspringlab.service.RepairCaseService;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -78,4 +79,10 @@ public class RepairCaseController extends  GeneralController<RepairCase, RepairC
         return super.deleteEntity(id);
     }
 
+    @GetMapping(value = "/average_cost")
+    public ResponseEntity<Float> getAverageRepairCost() {
+        Float avg = repairCaseService.getAverageRepairCost();
+        System.out.println(avg);
+        return new ResponseEntity(avg, HttpStatus.OK);
+    }
 }

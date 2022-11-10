@@ -24,7 +24,8 @@ INSERT INTO kovalyk.parts (part_number, device, manufacturer, amount) VALUES
 ("C0BWNX0", 6, 3, 70),
 ("C0WH832", 10, 5, 20),
 ("CBAW9EY", 8, 6, 0),
-("CBQ9GA6", 9, 1, 10);
+("CBQ9GA6", 9, 1, 10),
+("IDBQ0B9", 3, 1, 10);
 
 INSERT INTO kovalyk.repairmen (name) VALUES
 ("Святослав Лиман"),
@@ -38,30 +39,18 @@ INSERT INTO kovalyk.repairmen (name) VALUES
 ("Маріо Сутужний"),
 ("Олег Рима");
 
-INSERT INTO kovalyk.repair_options (device, option_name, details, price) VALUES
-(1, "Full repair", "", 499),
-(2, "Board check", "", 99),
-(3, "Short circuit repair", "", 99),
-(4, "Full repair", "", 399),
-(4, "Screen replacement", "", 49),
-(5, "Sound repair", "", 59),
-(6, "Fixing backlight", "", 39),
-(7, "Storage repair", "", 149),
-(8, "Full check", "", 499),
-(9, "Full check", "", 699);
-
-INSERT INTO kovalyk.repair_cases (repair_option, repairman, opened, closed, failed) VALUES
-(1, 1, '2021-10-02 15:00:00', '2021-10-02 17:00:00', false),
-(2, 2, '2021-10-02 14:00:00', '2021-10-02 18:00:00', false),
-(3, 2, '2021-10-02 15:00:00', '2021-10-02 16:00:00', false),
-(4, 3, '2021-10-02 13:00:00', NULL, false),
-(5, 4, '2021-10-02 14:00:00', '2021-10-02 17:00:00', false),
-(6, 5, '2021-10-02 14:30:00', '2021-10-02 16:00:00', false),
-(7, 8, '2021-10-02 15:00:00', NULL, false),
-(8, 7, '2021-10-02 12:30:00', '2021-10-02 16:00:00', false),
-(9, 6, '2021-10-02 15:00:00', '2021-10-02 15:30:00', false),
-(10, 9, '2021-10-02 12:00:00', NULL, false),
-(10, 10, '2021-10-02 13:30:00', '2021-10-02 15:30:00', false);
+INSERT INTO kovalyk.repair_cases (device, repairman, opened, closed, failed, service_cost) VALUES
+(1, 1, '2021-10-02 15:00:00', '2021-10-02 17:00:00', false, 400),
+(2, 2, '2021-10-02 14:00:00', '2021-10-02 18:00:00', false, 100),
+(3, 2, '2021-10-02 15:00:00', '2021-10-02 16:00:00', false, 100),
+(4, 3, '2021-10-02 13:00:00', NULL, false, 0),
+(4, 4, '2021-10-02 14:00:00', '2021-10-02 17:00:00', false, 100),
+(5, 5, '2021-10-02 14:30:00', '2021-10-02 16:00:00', false, 200),
+(6, 8, '2021-10-02 15:00:00', NULL, false, 0),
+(7, 7, '2021-10-02 12:30:00', '2021-10-02 16:00:00', false, 100),
+(8, 6, '2021-10-02 15:00:00', '2021-10-02 15:30:00', false, 100),
+(9, 9, '2021-10-02 12:00:00', NULL, false, 0),
+(10, 10, '2021-10-02 13:30:00', '2021-10-02 15:30:00', false, 200);
 
 INSERT INTO kovalyk.replaced_parts (repair_case, replaced_part) VALUES
 (1, 2),
@@ -72,9 +61,9 @@ INSERT INTO kovalyk.replaced_parts (repair_case, replaced_part) VALUES
 (5, 3),
 (6, 6),
 (7, 8),
-(8, 2),
-(10, 10),
-(11, 3);
+(8, 7),
+(10, 11),
+(11, 9);
 
 INSERT INTO kovalyk.working_hours (repairman, day, start, end) VALUES
 (1, "Mo", '10:00:00', '19:00:00'),
@@ -116,14 +105,4 @@ INSERT INTO kovalyk.working_hours (repairman, day, start, end) VALUES
 (8, "Tu", '10:00:00', '19:00:00'),
 (8, "We", '10:00:00', '19:00:00'),
 (8, "Th", '10:00:00', '19:00:00'),
-(8, "Fr", '10:00:00', '19:00:00'),
-(9, "Mo", '10:00:00', '19:00:00'),
-(9, "Tu", '10:00:00', '19:00:00'),
-(9, "We", '10:00:00', '19:00:00'),
-(9, "Th", '10:00:00', '19:00:00'),
-(9, "Fr", '10:00:00', '19:00:00'),
-(10, "Mo", '10:00:00', '19:00:00'),
-(10, "Tu", '10:00:00', '19:00:00'),
-(10, "We", '10:00:00', '19:00:00'),
-(10, "Th", '10:00:00', '19:00:00'),
-(10, "Fr", '10:00:00', '19:00:00');
+(8, "Fr", '10:00:00', '19:00:00');

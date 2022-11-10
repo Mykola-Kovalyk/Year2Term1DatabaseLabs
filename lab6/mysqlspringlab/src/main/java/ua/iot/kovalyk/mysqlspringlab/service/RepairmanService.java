@@ -11,9 +11,11 @@ import javax.transaction.Transactional;
 @Service
 public class RepairmanService extends GeneralService<Repairman, Integer>{
 
+    RepairmanRepository repairmanRepository;
+
     @Autowired
     public RepairmanService(RepairmanRepository repository) {
-        this.repository = repository;
+        this.repository = repairmanRepository = repository;
     }
 
     @Transactional
@@ -28,4 +30,13 @@ public class RepairmanService extends GeneralService<Repairman, Integer>{
         repository.save(device);
     }
 
+    @Transactional
+    public void addRepairmen() {
+        repairmanRepository.addRepairmen();
+    }
+
+    @Transactional
+    public void createPaymentDatabases() {
+        repairmanRepository.createPaymentDatabases();
+    }
 }

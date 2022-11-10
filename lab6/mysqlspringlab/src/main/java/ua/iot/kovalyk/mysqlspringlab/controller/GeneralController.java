@@ -9,7 +9,7 @@ import ua.iot.kovalyk.mysqlspringlab.service.GeneralService;
 import java.util.List;
 
 
-public class GeneralController<Entity, DTO extends RepresentationModel<?>, ID> {
+public abstract class GeneralController<Entity, DTO extends RepresentationModel<?>, ID> {
 
 
     protected GeneralService<Entity, ID> service;

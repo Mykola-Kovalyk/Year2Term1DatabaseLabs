@@ -15,11 +15,12 @@ import java.util.List;
 @Service
 public class RepairCaseService extends GeneralService<RepairCase, Integer>{
 
+    RepairCaseRepository repairCaseRepository;
     PartRepository partRepository;
 
     @Autowired
     public RepairCaseService(RepairCaseRepository repository, PartRepository partRepository) {
-        this.repository = repository;
+        this.repository = repairCaseRepository = repository;
         this.partRepository = partRepository;
     }
 
@@ -51,11 +52,7 @@ public class RepairCaseService extends GeneralService<RepairCase, Integer>{
     public RepairCase addPartForRepairCase(Integer repairCaseId, Integer partId) {
         RepairCase repairCase = repository.findById(repairCaseId)
                 .orElseThrow(() -> new ResourceNotFoundException(repairCaseId));
-        Part part = partRepository.findById(partId)
-                .orElseThrow(() -> new ResourceNotFoundException(partId));
-        if (repairCase.getReplacedParts().contains(part)) throw new ResourceAlreadyExistsException(partId);
-        repairCase.getReplacedParts().add(part);
-        repository.save(repairCase);
+        repairCaseRepository.addReplacedPart(repairCaseId, partId);
         return repairCase;
     }
 
@@ -69,5 +66,10 @@ public class RepairCaseService extends GeneralService<RepairCase, Integer>{
         repairCase.getReplacedParts().remove(part);
         repository.save(repairCase);
         return repairCase;
+    }
+
+    @Transactional
+    public Float getAverageRepairCost() {
+        return repairCaseRepository.getAverageRepairCost();
     }
 }

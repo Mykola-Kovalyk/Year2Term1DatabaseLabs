@@ -12,9 +12,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
     @ResponseBody
-    @ExceptionHandler(ResourceNotFoundException.class)
+    @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String cityNotFoundHandler(ResourceNotFoundException ex) {
+    String generalHandler(RuntimeException ex) {
         return ex.getMessage();
     }
 
