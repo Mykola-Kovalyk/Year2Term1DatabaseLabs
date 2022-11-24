@@ -12,3 +12,7 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 }
+
+// run data.sql and then schema.sql after the application is started, 
+// to fill DB with data and create triggers/functions/procedures
+// the files are in resources folder 
