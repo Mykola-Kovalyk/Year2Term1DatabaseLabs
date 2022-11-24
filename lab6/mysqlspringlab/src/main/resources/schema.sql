@@ -13,10 +13,8 @@ BEGIN
         SET MESSAGE_TEXT = error_message;
     END IF;
 END //
-DELIMITER ;
 
 DROP TRIGGER IF EXISTS WorkingHourForeignKeyCheckUpdate;
-DELIMITER //
 CREATE TRIGGER WorkingHourForeignKeyCheckUpdate
 AFTER INSERT
 ON kovalyk.working_hours FOR EACH ROW
