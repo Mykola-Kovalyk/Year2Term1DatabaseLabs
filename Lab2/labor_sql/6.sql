@@ -1,0 +1,1 @@
+SELECT DATE_FORMAT(date, "%d.%m.%Y") as date FROM labor_sql.income;
